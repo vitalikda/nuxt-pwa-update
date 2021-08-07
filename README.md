@@ -8,13 +8,12 @@ Here is the code:
 export default async function() {
   const workbox = await window.$workbox
 
+  // Workbox couldn't be loaded
   if (!workbox) return
 
   workbox.addEventListener('installed', event => {
-    if (event.isUpdate) {
-      window.location.reload()
-      return    
-    }
+    // There is a new PWA version, reload the page
+    if (event.isUpdate) window.location.reload()
   })
 }
 ```
